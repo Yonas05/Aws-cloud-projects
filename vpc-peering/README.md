@@ -10,7 +10,7 @@ This project demonstrates creating a **VPC peering connection** between two VPCs
 - Analyze network traffic
 
 ## Architecture Diagram
-![VPC Peering Diagram](architecture-diagram.png)
+![VPC Peering Diagram](AWS-VPC-Peering-architecture.png)
 
 ## Steps
 1. [Create VPCs](steps/01-create-vpcs.md)
