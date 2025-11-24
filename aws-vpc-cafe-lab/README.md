@@ -1,228 +1,60 @@
-☕ AWS VPC Networking Environment for Café Application
-Challenge Lab: Secure VPC with Bastion Host, Private Subnet, NAT Gateway & Network ACLs
+# ☕ Café VPC Lab
 
-This project demonstrates building a secure VPC environment for a café’s application using layered security, subnet isolation, and controlled administrative access.
+This project demonstrates creating a **secure VPC networking environment** for a café application in AWS, including public/private subnets, bastion host, NAT gateway, private EC2 instance, and custom network ACLs.
 
-📸 Screenshot Strategy
+---
 
-To maintain clear documentation, each major step contains:
+## Lab Objectives
+- Create a public and private subnet
+- Launch a bastion host and private EC2 instance
+- Configure a NAT gateway for outbound internet access from the private subnet
+- Use SSH passthrough (agent forwarding) for private instance access
+- Implement a custom network ACL to control traffic
+- Test connectivity and internet access
 
-📷 Screenshot Placeholder
+---
 
-Replace the markdown image tag:
-![Screenshot Step X](screenshots/step-x.png)
+## Architecture Diagram
+![Café VPC Architecture](screenshots/aws-vpc-cafe-architecture.png)
 
-Upload your screenshot to a folder named screenshots inside your repo.
+---
 
-Name the images like:
+## Steps
 
-step-01-create-public-subnet.png
-step-02-create-igw.png
-step-03-route-table.png
-...
+1. [Create Public Subnet & Internet Gateway](steps/01-public-subnet.md)  
+   ![Step 1](screenshots/step-01-public-subnet.png)
 
-1️⃣ Create Public Subnet + Internet Gateway
-Step 1 — Create Public Subnet
+2. [Launch Bastion Host in Public Subnet](steps/02-bastion-host.md)  
+   ![Step 2](screenshots/step-04-bastion-ec2.png)
 
-VPC: Lab VPC
+3. [Test SSH Connection to Bastion Host](steps/03-ssh-bastion.md)  
+   ![Step 3](screenshots/step-06-ssh-bastion.png)
 
-Subnet name: Public Subnet
+4. [Create Private Subnet](steps/04-private-subnet.md)  
+   ![Step 4](screenshots/step-07-private-subnet.png)
 
-CIDR: 10.0.0.0/24
+5. [Create NAT Gateway & Private Route Table](steps/05-nat-gateway.md)  
+   ![Step 5](screenshots/step-08-nat-gateway.png)
 
-AZ: Region "a"
+6. [Launch Private EC2 Instance](steps/06-private-ec2.md)  
+   ![Step 6](screenshots/step-11-private-ec2.png)
 
-📷 Screenshot:
+7. [Enable SSH Passthrough (Agent Forwarding)](steps/07-ssh-passthrough.md)  
+   ![Step 7](screenshots/step-12-ssh-agent.png)
 
-screenshots/step-01-public-subnet.png
+8. [Test Internet Access from Private Instance](steps/08-ping-private.md)  
+   ![Step 8](screenshots/step-14-ping-private.png)
 
+9. [Create Custom Network ACL](steps/09-network-acl.md)  
+   ![Step 9](screenshots/step-15-acl-create.png)
 
-Step 2 — Create Internet Gateway
+10. [Test ACL by Blocking ICMP](steps/10-acl-test.md)  
+    ![Step 10](screenshots/step-18-acl-deny-icmp.png)
 
-Name: Lab-IGW
+---
 
-Attach to Lab VPC
+## Screenshots
+All screenshots of the lab steps are stored in the `screenshots/` folder.
 
-📷 Screenshot:
+Example naming convention:
 
-screenshots/step-02-internet-gateway.png
-
-
-Step 3 — Update Route Table
-
-Add route:
-
-Destination: 0.0.0.0/0
-
-Target: Internet Gateway
-
-📷 Screenshot:
-
-screenshots/step-03-route-table.png
-
-
-2️⃣ Create Bastion Host in Public Subnet
-Step 4 — Launch EC2 "Bastion Host"
-
-AMI: Amazon Linux 2023
-
-Type: t2.micro
-
-Public IP: Enabled
-
-Key: vockey
-
-Subnet: Public Subnet
-
-📷 Screenshot:
-
-screenshots/step-04-bastion-ec2.png
-
-
-Step 5 — Create Security Group "Bastion Host SG"
-
-Inbound:
-
-Type: SSH
-
-Source: My IP
-
-📷 Screenshot:
-
-screenshots/step-05-bastion-sg.png
-
-
-3️⃣ Test SSH to Bastion Host
-Step 6 — SSH Connection
-
-Command:
-
-ssh -i labsuser.pem ec2-user@<bastion-public-ip>
-
-
-📷 Screenshot:
-
-screenshots/step-06-ssh-bastion.png
-
-
-4️⃣ Create Private Subnet
-Step 7 — Create Private Subnet
-
-Name: Private Subnet
-
-CIDR: 10.0.1.0/24
-
-📷 Screenshot:
-
-screenshots/step-07-private-subnet.png
-
-
-5️⃣ Create NAT Gateway + Private Route Table
-Step 8 — Create NAT Gateway
-
-Subnet: Public Subnet
-
-Allocate Elastic IP
-
-📷 Screenshot:
-
-screenshots/step-08-nat-gateway.png
-
-
-Step 9 — Create Private Route Table
-
-Add route:
-
-0.0.0.0/0 → NAT Gateway
-
-📷 Screenshot:
-
-screenshots/step-09-private-route-table.png
-
-
-6️⃣ Create Private EC2 Instance
-Step 10 — Create Key Pair "vockey2"
-
-📷 Screenshot:
-
-screenshots/step-10-keypair-vockey2.png
-
-
-Step 11 — Launch EC2 "Private Instance"
-
-AMI: Amazon Linux 2023
-
-Subnet: Private Subnet
-
-SG: SSH From Bastion Host SG
-
-📷 Screenshot:
-
-screenshots/step-11-private-ec2.png
-
-
-7️⃣ Configure SSH Passthrough (Agent Forwarding)
-Step 12 — Add Keys to ssh-agent
-ssh-add -K vockey.pem
-ssh-add -K vockey2.pem
-
-
-📷 Screenshot (Terminal):
-
-screenshots/step-12-ssh-agent.png
-
-
-Step 13 — SSH to Private Instance Through Bastion
-ssh -A ec2-user@<bastion-ip>
-ssh ec2-user@<private-ip>
-
-
-📷 Screenshot:
-
-screenshots/step-13-ssh-private-ec2.png
-
-
-8️⃣ Test Internet Access from Private Instance
-Step 14 — Ping Test
-ping 8.8.8.8
-
-
-📷 Screenshot:
-
-screenshots/step-14-ping-private-instance.png
-
-
-9️⃣ Create Custom Network ACL
-Step 15 — Create ACL
-
-Name: Lab Network ACL
-
-Allow ALL for Private Subnet
-
-📷 Screenshot:
-
-screenshots/step-15-acl-create.png
-
-
-🔟 Test ACL Blocking ICMP
-Step 16 — Create "Test Instance" in Public Subnet
-
-📷 Screenshot:
-
-screenshots/step-16-test-instance.png
-
-
-Step 17 — Ping Test Instance from Private Instance
-
-📷 Screenshot:
-
-screenshots/step-17-ping-test-instance.png
-
-
-Step 18 — Add ACL DENY Rule for ICMP
-
-Deny ICMP from <test-ip>/32
-
-📷 Screenshot:
-
-screenshots/step-18-acl-deny-icmp.png
