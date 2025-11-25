@@ -15,7 +15,7 @@ These Projects are ideal for students, cloud enthusiasts, and professionals prep
 - Implement **custom network ACLs** to control traffic flow.
 - Practice **SSH agent forwarding** for secure connectivity.
 
-![Café VPC Architecture](aws-vpc-cafe-Project/aws-vpc-cafe-architecture.png)
+![Café VPC Architecture](aws-vpc-cafe-lab/aws-vpc-cafe-architecture.png)
 
 ### 2. VPC Peering Project 🔗
 - Create **two VPCs** and establish a **VPC peering connection**.
