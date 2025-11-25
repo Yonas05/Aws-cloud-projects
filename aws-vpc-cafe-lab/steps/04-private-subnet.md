@@ -8,4 +8,4 @@
 
 No internet access is configured yet.
 
-![Private Subnet](../screenshots/step-07-private-subnet.png)
+![Private Subnet](../screenshoots/step-07-private-subnet.png)
