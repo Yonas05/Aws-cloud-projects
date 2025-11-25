@@ -18,4 +18,4 @@ Now add NACL rule:
 
 Ping should stop — ICMP blocked.
 
-![ACL Deny ICMP](../screenshots/step-18-acl-deny-icmp.png)
+![ACL Deny ICMP](../screenshoots/step-18-acl-deny-icmp.png)
