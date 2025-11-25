@@ -13,4 +13,4 @@ ssh -A ec2-user@<bastion-ip>
 - In PuTTY:
   - Connection → SSH → Auth → **Allow agent forwarding**
 
-![SSH Agent](../screenshots/step-12-ssh-agent.png)
+![SSH Agent](../screenshoots/step-12-ssh-agent.png)

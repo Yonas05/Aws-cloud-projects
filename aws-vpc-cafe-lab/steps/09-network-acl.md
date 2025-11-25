@@ -10,4 +10,4 @@ Outbound: ALLOW 0.0.0.0/0
 
 Associate NACL with **Private Subnet**.
 
-![ACL Create](../screenshots/step-15-acl-create.png)
+![ACL Create](../screenshoots/step-15-acl-create.png)

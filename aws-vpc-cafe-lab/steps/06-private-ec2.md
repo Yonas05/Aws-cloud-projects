@@ -12,4 +12,4 @@
 |------|------|--------|
 | SSH  | 22   | Bastion Host SG |
 
-![Private EC2](../screenshots/step-11-private-ec2.png)
+![Private EC2](../screenshoots/step-11-private-ec2.png)

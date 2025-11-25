@@ -14,4 +14,4 @@ ping 8.8.8.8
 vbnet
 Copy code
 
-![Ping Private](../screenshots/step-14-ping-private.png)
+![Ping Private](../screenshoots/step-14-ping-private.png)

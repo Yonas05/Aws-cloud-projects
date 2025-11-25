@@ -15,4 +15,4 @@ Add route:
 
 This enables outbound internet for private EC2.
 
-![NAT Gateway](../screenshots/step-08-nat-gateway.png)
+![NAT Gateway](../screenshoots/step-08-nat-gateway.png)
