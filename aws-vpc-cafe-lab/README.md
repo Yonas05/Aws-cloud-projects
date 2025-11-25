@@ -15,7 +15,7 @@ This project demonstrates creating a **secure VPC networking environment** for a
 ---
 
 ## Architecture Diagram
-![Café VPC Architecture](screenshoots/aws-vpc-cafe-architecture.png)
+![Café VPC Architecture](aws-vpc-cafe-architecture.png)
 
 ---
 
